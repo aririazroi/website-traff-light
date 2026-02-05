@@ -204,13 +204,27 @@ Both pipelines include a placeholder `scorer.py` that returns dummy scores. Repl
 
 ## Deployment
 
-### Website Only (Static)
+### GitHub Pages (recommended)
+
+1. **Enable Pages from Actions**
+   - Repo → **Settings** → **Pages**
+   - Under **Build and deployment**, set **Source** to **GitHub Actions**.
+
+2. **Deploy**
+   - Push to `main` (or run the workflow manually: Actions → "Deploy to GitHub Pages" → Run workflow).
+   - The workflow builds the site and deploys the `dist/` folder.
+
+3. **Your site URL**
+   - `https://<username>.github.io/<repo-name>/`  
+   - (GitHub may take 1–2 minutes after the first run.)
+
+### Website only (static build)
 
 ```bash
 # Build for production
 npm run build
 
-# Deploy dist/ folder to any static host (Netlify, Vercel, GitHub Pages, etc.)
+# Deploy dist/ folder to any static host (Netlify, Vercel, etc.)
 ```
 
 ### Website + Pipeline (Automated)
