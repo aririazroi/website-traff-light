@@ -4,11 +4,10 @@ A news aggregation system that scores articles for title-content misalignment an
 
 ## Project Overview
 
-This project consists of three main components:
+This project consists of 2 main components:
 
 1. **Website** - A news display interface showing articles with traffic light indicators
-2. **News Pipeline (App)** - Batch pipeline for a future mobile/web app (outputs JSON)
-3. **News Pipeline (Web)** - Batch pipeline for the website (outputs `articles.js` with stratified sampling)
+2. **News Pipeline (Web)** - Batch pipeline for the website (outputs `articles.js` with stratified sampling)
 
 ```
 v4/
@@ -28,9 +27,9 @@ v4/
 ### Features
 
 - Displays news articles with **traffic light indicators**:
-  - 🟢 **Green**: Title aligns well with content (score 0-33)
-  - 🟡 **Yellow**: Some misalignment detected (score 34-66)
-  - 🔴 **Red**: Significant misalignment / potentially misleading (score 67-100)
+  - 🟢 **Green**: Title aligns well with content 
+  - 🟡 **Yellow**: Some misalignment detected 
+  - 🔴 **Red**: Significant misalignment / potentially misleading 
 - Article modal with full content view
 - User interaction tracking via Google Sheets
 - Participant ID support (`?pid=...` URL parameter)
@@ -63,68 +62,6 @@ See `GOOGLE_SHEETS_SETUP.md` for setup instructions.
 
 ## News Pipelines
 
-Both pipelines share the same core flow:
-
-```
-GNews API → Fetch Articles → NLP Scoring → Traffic Light Mapping → Output
-```
-
-### Pipeline Comparison
-
-| Feature | `news_pipeline/` (App) | `news_pipeline_web/` (Website) |
-|---------|------------------------|--------------------------------|
-| Purpose | Future mobile/web app | Current website |
-| Output | `articles.json` | `articles.js` |
-| Sampling | All articles | 3 per color bin (9 total) |
-| Format | JSON with metadata | JavaScript for direct inclusion |
-
----
-
-## News Pipeline (App Version)
-
-Located in `news_pipeline/`. Outputs all scored articles as JSON.
-
-### Quick Start
-
-```bash
-cd news_pipeline
-
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-
-# Run
-GNEWS_API_KEY=your_key python3 -m app.main
-```
-
-### Output
-
-Writes to `output/articles.json`:
-
-```json
-{
-  "lastUpdated": "2026-01-29T12:00:00+00:00",
-  "articles": [
-    {
-      "id": "abc123",
-      "title": "Article Title",
-      "summary": "Description...",
-      "content": "Full content...",
-      "url": "https://...",
-      "image": "https://...",
-      "publishedAt": "2026-01-29T10:00:00Z",
-      "source": { "id": "...", "name": "...", "url": "...", "country": "..." },
-      "misleadingScore": 45,
-      "trafficLightStatus": "yellow"
-    }
-  ]
-}
-```
-
----
-
-## News Pipeline (Website Version)
 
 Located in `news_pipeline_web/`. Outputs sampled articles as JavaScript.
 
@@ -426,8 +363,4 @@ cd news_pipeline_web
 GNEWS_API_KEY=your_key python3 -m app.main --out ../articles.js
 ```
 
----
 
-## License
-
-[Add your license here]
