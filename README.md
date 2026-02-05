@@ -284,6 +284,24 @@ For automated article updates:
 2. **Schedule** to run periodically (e.g., every 30 minutes)
 3. **Output** `articles.js` to your static host or CDN
 
+#### GitHub Actions (recommended)
+
+A workflow runs the pipeline and commits updated `articles.js` to the repo:
+
+- **Schedule**: daily at 06:00 UTC
+- **Manual**: Actions → "Run news pipeline" → "Run workflow"
+
+**Required repository secrets** (Settings → Secrets and variables → Actions):
+
+| Secret | Description |
+|--------|-------------|
+| `GNEWS_API_KEY` | Your GNews API key |
+| `DEEPSEEK_API_KEY` | DeepSeek API key for scoring (optional; falls back to score 50 if missing) |
+
+**Optional variables** (Settings → Variables): `QUERY` (default `news`), `MAX_RESULTS` (default `50`).
+
+After each run, the workflow commits the new `articles.js` so your deployed site (e.g. GitHub Pages) shows fresh articles.
+
 #### Google Cloud Run Jobs
 
 ```bash
