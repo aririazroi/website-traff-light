@@ -1,0 +1,10 @@
+# News Pipeline Dependencies
+
+# HTTP client for GNews API
+requests>=2.28.0
+
+# For type hints (Python 3.8+ has most built-in, but useful for older versions)
+typing-extensions>=4.0.0
+
+# DeepSeek API (OpenAI-compatible client)
+openai>=1.0.0
